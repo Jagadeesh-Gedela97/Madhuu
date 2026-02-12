@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Forever Valentine 💖</title>
+
+<style>
+body{
+  margin:0;
+  padding:0;
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(135deg,#ff416c,#ff4b2b);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  overflow:hidden;
+  color:white;
+  text-align:center;
+}
+
+.container{
+  position:relative;
+  z-index:2;
+  animation:fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(30px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+button{
+  padding:12px 25px;
+  font-size:18px;
+  border:none;
+  border-radius:25px;
+  margin:10px;
+  cursor:pointer;
+}
+
+#yes{background:white;color:#ff416c;}
+#no{background:black;color:white;position:absolute;}
+
+canvas{
+  position:absolute;
+  top:0;
+  left:0;
+  z-index:1;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="fireworks"></canvas>
+
+<div class="container" id="main">
+  <h1>Will You Be My Forever Valentine? 💍❤️</h1>
+  <button id="yes" onclick="accepted()">Yes 💖</button>
+  <button id="no" onmouseover="move()">No 😜</button>
+</div>
+
+<script>
+
+function move(){
+  var btn=document.getElementById("no");
+  btn.style.top=Math.random()*window.innerHeight+"px";
+  btn.style.left=Math.random()*window.innerWidth+"px";
+}
+
+function accepted(){
+  document.getElementById("main").innerHTML=
+  "<h1>She Said YES 💖🎉</h1>" +
+
+  // 🔥 Small Hint Text
+  "<p style='font-size:12px; opacity:0.6; letter-spacing:1px;'>Hint: Nee EAMCET rank</p>" +
+
+  "<input type='password' id='pass' placeholder='Enter Secret Password'><br><br>" +
+  "<button onclick='checkPass()'>Enter 🔐</button>";
+
+  startFireworks();
+}
+
+function checkPass(){
+  var password="80817";   // 🔥 CHANGE YOUR PASSWORD HERE
+  var input=document.getElementById("pass").value;
+
+  if(input===password){
+    window.location.href="quiz.html";
+  }else{
+    alert("Wrong Password 😜 Try Again!");
+  }
+}
+
+/* 🔥 Fireworks Animation */
+
+var canvas=document.getElementById("fireworks");
+var ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+var particles=[];
+
+function startFireworks(){
+  setInterval(function(){
+    for(var i=0;i<80;i++){
+      particles.push({
+        x:canvas.width/2,
+        y:canvas.height/2,
+        dx:(Math.random()-0.5)*6,
+        dy:(Math.random()-0.5)*6,
+        life:80
+      });
+    }
+  },600);
+
+  animate();
+}
+
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach(function(p,i){
+    p.x+=p.dx;
+    p.y+=p.dy;
+    p.life--;
+    ctx.fillStyle="white";
+    ctx.fillRect(p.x,p.y,2,2);
+    if(p.life<=0) particles.splice(i,1);
+  });
+  requestAnimationFrame(animate);
+}
+
+</script>
+
+</body>
+</html>

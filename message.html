@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Forever Yours 💖</title>
+
+<style>
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  color:white;
+  height:100vh;
+  overflow:hidden;
+  position:relative;
+
+  /* ✅ Direct Background Image (No Blur) */
+  background:url("message.jpeg") center/cover no-repeat;
+}
+
+/* Dark overlay for readability */
+body::after{
+  content:"";
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.65);
+  z-index:-1;
+}
+
+/* Center Heading */
+h1{
+  text-align:center;
+  margin-top:40px;
+  font-size:32px;
+}
+
+/* Right Side Message Box */
+.container{
+  position:absolute;
+  right:8%;
+  top:50%;
+  transform:translateY(-50%);
+  width:40%;
+  max-width:500px;
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(10px);
+  padding:30px;
+  border-radius:20px;
+  box-shadow:0 0 25px rgba(255,0,100,0.4);
+}
+
+#text{
+  font-size:18px;
+  line-height:1.7;
+  white-space:pre-wrap;
+  min-height:200px;
+}
+
+.final{
+  margin-top:20px;
+  font-size:22px;
+  color:#ff4b8b;
+  opacity:0;
+  transition:opacity 2s ease;
+}
+</style>
+
+</head>
+<body>
+
+<h1>For My Forever Valentine 💖</h1>
+
+<div class="container">
+  <div id="text"></div>
+  <div class="final" id="finalText">Forever Yours ❤️</div>
+</div>
+
+<script>
+
+var message=`From the moment you walked into my life,
+everything changed beautifully.
+These 5+ years with you have been the happiest chapter of my life. 💕
+Every single day with you feels like a blessing.
+You are my happiness when I am sad,
+my strength when I feel weak,
+my peace in every chaos.
+Every smile of yours lights up my world.
+Every memory with you feels magical. ✨
+I promise to stand beside you,
+to support your dreams,
+to hold your hand forever.
+Alakalu maani premaga undu bangaroo…💖
+Let’s always choose love over everything.
+You are my always,
+my forever,
+my everything. 💖💖`;
+
+var i=0;
+var speed=45;
+
+function typeWriter(){
+  if(i < message.length){
+    document.getElementById("text").innerHTML += message.charAt(i);
+    i++;
+    setTimeout(typeWriter, speed);
+  }else{
+    document.getElementById("finalText").style.opacity="1";
+  }
+}
+
+typeWriter();
+
+</script>
+
+</body>
+</html>

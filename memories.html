@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Our Memories 💖</title>
+
+<style>
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  overflow:hidden;
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  position:relative;
+}
+
+/* Background */
+body::before{
+  content:"";
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:url("memories.jpeg") center/cover no-repeat;
+  filter:blur(8px);
+  transform:scale(1.1);
+  z-index:-2;
+}
+
+body::after{
+  content:"";
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.6);
+  z-index:-1;
+}
+
+.center-box{
+  text-align:center;
+}
+
+button{
+  padding:12px 25px;
+  font-size:16px;
+  border:none;
+  border-radius:25px;
+  cursor:pointer;
+  margin-top:20px;
+}
+
+.yes-btn{
+  background:#ff4b2b;
+  color:white;
+}
+
+.nav-btn{
+  background:black;
+  color:white;
+  margin:20px 10px;
+}
+
+.memory-container{
+  width:90%;
+  max-width:700px;
+  text-align:center;
+  display:none;
+}
+
+.memory{
+  display:none;
+}
+
+.memory.active{
+  display:block;
+  animation:fadeIn 0.7s ease;
+}
+
+.memory img{
+  width:100%;
+  height:70vh;
+  object-fit:cover;
+  border-radius:20px;
+}
+
+.details{
+  margin-top:15px;
+  font-size:16px;
+  color:#ff4b2b;
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:translateX(30px);}
+  to{opacity:1; transform:translateX(0);}
+}
+</style>
+
+</head>
+<body>
+
+<!-- 🎵 Background Song -->
+<audio id="bgSong" src="C:\Users\Jagadeesh\OneDrive\Desktop\song.mpeg" loop></audio>
+
+<!-- Intro Screen -->
+<div class="center-box" id="intro">
+  <h2>Wanna see our memories? 💖</h2>
+  <button class="yes-btn" onclick="startMemories()">Yes 💕</button>
+</div>
+
+<!-- Memories Section -->
+<div class="memory-container" id="memoriesSection">
+
+<div class="memory active">
+  <img src="m1.jpeg">
+  <div class="details">Our First Beautiful Bus Journey 💕</div>
+</div>
+
+<div class="memory">
+  <img src="m2.jpeg">
+  <div class="details">📅 14 Feb 2024 – Our First Long Journey 😍</div>
+</div>
+
+<div class="memory">
+  <img src="m3.jpeg">
+  <div class="details">Our First Cam Pics ❤️</div>
+</div>
+
+<div class="memory">
+  <img src="m4.jpeg">
+  <div class="details">Always Felt Cute Together ✨</div>
+</div>
+
+<div class="memory">
+  <img src="m5.jpeg">
+  <div class="details">Park Romance 🌳💑</div>
+</div>
+
+<div class="memory">
+  <img src="m6.jpeg">
+  <div class="details">Luv of My Lyff 💖</div>
+</div>
+
+<div class="memory">
+  <img src="m7.jpeg">
+  <div class="details">First Bday Surprise 🎂❤️</div>
+</div>
+
+<div class="memory">
+  <img src="m8.jpeg">
+  <div class="details">Memorable Bday Together 💕</div>
+</div>
+
+<div class="memory">
+  <img src="m10.jpeg">
+  <div class="details">Fav Pic of Ours 🥰</div>
+</div>
+
+<div class="memory">
+  <img src="m11.jpeg">
+  <div class="details">Second Bday Together ❤️</div>
+</div>
+
+<div>
+  <button class="nav-btn" onclick="prevMemory()">Previous</button>
+  <button class="nav-btn" id="nextBtn" onclick="nextMemory()">Next</button>
+</div>
+
+</div>
+
+<script>
+
+var current=0;
+var memories=document.querySelectorAll(".memory");
+var nextBtn=document.getElementById("nextBtn");
+var song=document.getElementById("bgSong");
+
+function startMemories(){
+  document.getElementById("intro").style.display="none";
+  document.getElementById("memoriesSection").style.display="block";
+  
+  song.play(); // 🎵 song start here
+}
+
+function showMemory(index){
+  memories.forEach(function(m){
+    m.classList.remove("active");
+  });
+  memories[index].classList.add("active");
+
+  if(index === memories.length-1){
+    nextBtn.innerText="Go to Final Message 💌";
+  }else{
+    nextBtn.innerText="Next";
+  }
+}
+
+function nextMemory(){
+  if(current < memories.length-1){
+    current++;
+    showMemory(current);
+  }else{
+    window.location.href="message.html";
+  }
+}
+
+function prevMemory(){
+  if(current>0){
+    current--;
+    showMemory(current);
+  }
+}
+
+</script>
+
+</body>
+</html>
